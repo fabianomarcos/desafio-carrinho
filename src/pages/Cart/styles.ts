@@ -65,6 +65,7 @@ export const ProductTable = styled.table`
 
     input {
       border: 1px solid #ddd;
+      text-align: center;
       border-radius: 4px;
       color: #666;
       padding: 6px;

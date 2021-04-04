@@ -39,11 +39,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
   const cartPreviousValue = prevCartRef.current ?? cart;
 
   useEffect(() => {
-      if (cartPreviousValue !== cart) {
+      if (cartPreviousValue !== cart)
         localStorage.setItem("@RocketShoes:cart", JSON.stringify(cart));
-
-        toast.success("Produto adicionado ao carrinho com sucesso!");
-      }
   }, [cart, cartPreviousValue]);
 
   const addProduct = async (productId: number) => {
@@ -67,7 +64,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
             updatedCart.push({ ...product.data, amount });
         }
         setCart(updatedCart);
-
+        toast.success("Produto adicionado ao carrinho com sucesso!");
     } catch {
         toast.error('Erro na adição do produto');
     }
@@ -84,7 +81,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         } else {
             throw Error();
         }
-
+        toast.success("Produto removido do carrinho com sucesso!");
     } catch {
         toast.error('Erro na remoção do produto');
     }
@@ -114,6 +111,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         if (productExists) {
             productExists.amount = amount;
             setCart(updateProducts);
+            toast.success("Produto editado com sucesso!");
         } else throw Error();
     } catch {
         toast.error('Erro na alteração de quantidade do produto');
